@@ -1,5 +1,4 @@
 import React, { useMemo } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -34,16 +33,13 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {isLoading ? (
-          "loading"
-        ) : (
-          <img src={logo} className="App-logo" alt="logo" />
-        )}
-        {shakespeareEntries.map(([key, value]) => (
-          <p key={key}>
-            {key}: {value}
-          </p>
-        ))}
+        {isLoading
+          ? "loading"
+          : shakespeareEntries.map(([key, value]) => (
+              <p key={key}>
+                {key}: {value}
+              </p>
+            ))}
       </header>
     </div>
   );
