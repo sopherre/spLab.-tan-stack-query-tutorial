@@ -1,53 +1,33 @@
-import React, { useMemo } from "react";
-import "./App.css";
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { SnackbarProvider } from "notistack";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { TopPage } from "./pages/index.page";
+import { ConventionalPage } from "./pages/conventional.page";
+import { TanStackQueryPage } from "./pages/tanStackQuery.page";
 
-const sleep = (milliseconds: number) => {
-  return new Promise((resolve) => setTimeout(resolve, milliseconds));
-};
+const queryClient = new QueryClient();
 
-interface Response {
-  success: boolean;
-  data: {
-    name: string;
-    note: string;
-    age: number;
-    registerDate: string;
-  };
-}
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <TopPage />,
+  },
+  {
+    path: "/conventional",
+    element: <ConventionalPage />,
+  },
+  {
+    path: "/tan-stack-query",
+    element: <TanStackQueryPage />,
+  },
+]);
 
-const getShakespeare = async () => {
-  const { data } = await axios.get<Response>(
-    "https://umayadia-apisample.azurewebsites.net/api/persons/Shakespeare"
-  );
-  await sleep(5000);
-  return data;
-};
-
-function App() {
-  const { data, isLoading } = useQuery({
-    queryKey: ["shakespeare"],
-    queryFn: getShakespeare,
-  });
-
-  const shakespeareEntries = useMemo(() => {
-    return data?.data ? Object.entries(data.data) : [];
-  }, [data?.data]);
-
+export const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        {isLoading
-          ? "loading"
-          : shakespeareEntries.map(([key, value]) => (
-              <p key={key}>
-                {key}: {value}
-              </p>
-            ))}
-      </header>
-    </div>
+    <SnackbarProvider>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
+    </SnackbarProvider>
   );
-}
-
-export default App;
+};
