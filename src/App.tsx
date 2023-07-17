@@ -3,6 +3,10 @@ import "./App.css";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
+const sleep = (milliseconds: number) => {
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
+};
+
 interface Response {
   success: boolean;
   data: {
@@ -17,6 +21,7 @@ const getShakespeare = async () => {
   const { data } = await axios.get<Response>(
     "https://umayadia-apisample.azurewebsites.net/api/persons/Shakespeare"
   );
+  await sleep(5000);
   return data;
 };
 
