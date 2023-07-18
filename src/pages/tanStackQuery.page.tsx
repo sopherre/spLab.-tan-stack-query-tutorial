@@ -1,10 +1,10 @@
-import { getTannerlinsley } from "../api/getTannerlinsley";
+import { getTannerlinsleyRepository } from "../api/getTannerlinsleyRepository";
 import { useQuery } from "@tanstack/react-query";
 
 export const TanStackQueryPage: React.FC = () => {
   const { isLoading, error, data } = useQuery({
     queryKey: ["repoData"],
-    queryFn: getTannerlinsley,
+    queryFn: getTannerlinsleyRepository,
   });
 
   if (isLoading || !data) return <p>Loading...</p>;

@@ -9,7 +9,7 @@ export interface Response {
   forks_count: number;
 }
 
-export const getTannerlinsley = async () => {
+export const getTannerlinsleyRepository = async () => {
   const { data } = await axios.get<Response>(
     "https://api.github.com/repos/tannerlinsley/react-query"
   );

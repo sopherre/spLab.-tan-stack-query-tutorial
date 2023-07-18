@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-import { Response, getTannerlinsley } from "../api/getTannerlinsley";
+import {
+  Response,
+  getTannerlinsleyRepository,
+} from "../api/getTannerlinsleyRepository";
 
 export const ConventionalPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -10,7 +13,7 @@ export const ConventionalPage: React.FC = () => {
     const fetch = async () => {
       try {
         setIsLoading(true);
-        const res = await getTannerlinsley();
+        const res = await getTannerlinsleyRepository();
         setDate(res);
       } catch (e) {
         if (!(e instanceof Error)) return;
