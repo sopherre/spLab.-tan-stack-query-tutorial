@@ -4,6 +4,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { TopPage } from "./pages/index.page";
 import { ConventionalPage } from "./pages/conventional.page";
 import { TanStackQueryPage } from "./pages/tanStackQuery.page";
+import { ErrorBoundaryPage } from "./pages/errorBoundary.page";
 
 const queryClient = new QueryClient();
 
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: "/tan-stack-query",
     element: <TanStackQueryPage />,
+  },
+  {
+    path: "/error-boundary",
+    element: <ErrorBoundaryPage />,
   },
 ]);
 

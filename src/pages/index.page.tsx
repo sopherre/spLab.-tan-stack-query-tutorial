@@ -10,6 +10,9 @@ export const TopPage: React.FC = () => {
         <li>
           <Link to={"/tan-stack-query"}>TanStack Query</Link>
         </li>
+        <li>
+          <Link to={"/error-boundary"}>ErrorBoundary</Link>
+        </li>
       </ul>
     </div>
   );
