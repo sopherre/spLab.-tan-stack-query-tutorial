@@ -3,14 +3,14 @@ import { useQuery } from "@tanstack/react-query";
 
 export const TanStackQueryPage: React.FC = () => {
   const { isLoading, error, data } = useQuery({
-    queryKey: ["repoData"],
+    queryKey: ["tannerlinsleyRepository"],
     queryFn: getTannerlinsleyRepository,
   });
 
-  if (isLoading || !data) return <p>Loading...</p>;
-
   if (error instanceof Error)
     return <p>An error has occurred: {error.message}</p>;
+
+  if (isLoading || !data) return <p>Loading...</p>;
 
   return (
     <div>
