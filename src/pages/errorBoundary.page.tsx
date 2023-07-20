@@ -4,7 +4,12 @@ import { ErrorBoundaryContainer } from "../components/errorBoundaryContainer";
 export const ErrorBoundaryPage: React.FC = () => {
   return (
     <ErrorBoundary
-      fallbackRender={({ error }) => <p>An error has occurred:{error}</p>}
+      FallbackComponent={({ error }) => (
+        <div role="alert">
+          <p>Something went wrong:</p>
+          <pre style={{ color: "red" }}>{error.message}</pre>
+        </div>
+      )}
     >
       <ErrorBoundaryContainer />
     </ErrorBoundary>
