@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { errorApi } from "../api/error";
 
 export const ErrorBoundaryContainer: React.FC = () => {
-  const { error } = useQuery<unknown, Error>({
+  const { isLoading, error } = useQuery<unknown, Error>({
     queryKey: ["errorApi"],
     queryFn: errorApi,
   });
@@ -12,6 +12,8 @@ export const ErrorBoundaryContainer: React.FC = () => {
     if (!error) return;
     throw new Error(error.message);
   }, [error]);
+
+  if (isLoading) return <p>Loading...</p>;
 
   return (
     <div>
