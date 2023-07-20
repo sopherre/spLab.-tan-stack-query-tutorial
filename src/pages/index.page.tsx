@@ -13,6 +13,9 @@ export const TopPage: React.FC = () => {
         <li>
           <Link to={"/error-boundary"}>ErrorBoundary</Link>
         </li>
+        <li>
+          <Link to={"/mutation"}>Mutation</Link>
+        </li>
       </ul>
     </div>
   );

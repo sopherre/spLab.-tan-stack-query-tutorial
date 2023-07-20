@@ -5,6 +5,7 @@ import { TopPage } from "./pages/index.page";
 import { ConventionalPage } from "./pages/conventional.page";
 import { TanStackQueryPage } from "./pages/tanStackQuery.page";
 import { ErrorBoundaryPage } from "./pages/errorBoundary.page";
+import { MutationPage } from "./pages/mutation.page";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "/error-boundary",
     element: <ErrorBoundaryPage />,
+  },
+  {
+    path: "/mutation",
+    element: <MutationPage />,
   },
 ]);
 
