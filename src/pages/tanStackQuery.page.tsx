@@ -1,14 +1,16 @@
-import { getTannerlinsleyRepository } from "../api/getTannerlinsleyRepository";
+import {
+  Response,
+  getTannerlinsleyRepository,
+} from "../api/getTannerlinsleyRepository";
 import { useQuery } from "@tanstack/react-query";
 
 export const TanStackQueryPage: React.FC = () => {
-  const { isLoading, error, data } = useQuery({
+  const { isLoading, error, data } = useQuery<Response, Error>({
     queryKey: ["tannerlinsleyRepository"],
     queryFn: getTannerlinsleyRepository,
   });
 
-  if (error instanceof Error)
-    return <p>An error has occurred: {error.message}</p>;
+  if (error) return <p>An error has occurred: {error.message}</p>;
 
   if (isLoading || !data) return <p>Loading...</p>;
 
