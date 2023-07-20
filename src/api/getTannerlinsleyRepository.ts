@@ -9,9 +9,10 @@ export interface Response {
   forks_count: number;
 }
 
-export const getTannerlinsleyRepository = async () => {
+export const getTannerlinsleyRepository = async (signal?: AbortSignal) => {
   const { data } = await axios.get<Response>(
-    "https://api.github.com/repos/tannerlinsley/react-query"
+    "https://api.github.com/repos/tannerlinsley/react-query",
+    { signal }
   );
   await sleep(3000);
   return data;
