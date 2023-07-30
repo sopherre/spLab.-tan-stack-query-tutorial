@@ -3,11 +3,12 @@ import {
   Response,
   getTannerlinsleyRepository,
 } from "../api/getTannerlinsleyRepository";
+import { AxiosError, isAxiosError } from "axios";
 
 export const ConventionalPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setDate] = useState<Response>();
-  const [error, setError] = useState<Error>();
+  const [error, setError] = useState<AxiosError>();
 
   useEffect(() => {
     const fetch = async () => {
@@ -16,7 +17,7 @@ export const ConventionalPage: React.FC = () => {
         const res = await getTannerlinsleyRepository();
         setDate(res);
       } catch (e) {
-        if (!(e instanceof Error)) return;
+        if (!isAxiosError(e)) return;
         setError(e);
       } finally {
         setIsLoading(false);
