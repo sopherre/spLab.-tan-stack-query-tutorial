@@ -1,3 +1,4 @@
+import { AxiosError } from "axios";
 import {
   Response,
   getTannerlinsleyRepository,
@@ -5,14 +6,14 @@ import {
 import { useQuery } from "@tanstack/react-query";
 
 export const TanStackQueryPage: React.FC = () => {
-  const { isLoading, error, data } = useQuery<Response, Error>({
+  const { isLoading, error, data } = useQuery<Response, AxiosError>({
     queryKey: ["tannerlinsleyRepository"],
     queryFn: ({ signal }) => getTannerlinsleyRepository(signal),
   });
 
-  if (error) return <p>An error has occurred: {error.message}</p>;
+  if (isLoading) return <p>Loading...</p>;
 
-  if (isLoading || !data) return <p>Loading...</p>;
+  if (error) return <p>An error has occurred: {error.message}</p>;
 
   return (
     <div>
