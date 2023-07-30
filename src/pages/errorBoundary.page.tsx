@@ -6,7 +6,7 @@ export const ErrorBoundaryPage: React.FC = () => {
     <ErrorBoundary
       FallbackComponent={({ error }) => (
         <div role="alert">
-          <p>Something went wrong:</p>
+          <p>Something went wrong:(</p>
           <pre style={{ color: "red" }}>{error.message}</pre>
         </div>
       )}

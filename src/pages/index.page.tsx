@@ -8,7 +8,7 @@ export const TopPage: React.FC = () => {
           <Link to={"/conventional"}>従来のフェッチ</Link>
         </li>
         <li>
-          <Link to={"/tan-stack-query"}>TanStack Query</Link>
+          <Link to={"/tan-stack-query"}>TanStack Queryのフェッチ</Link>
         </li>
         <li>
           <Link to={"/error-boundary"}>ErrorBoundary</Link>
