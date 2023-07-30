@@ -1,11 +1,11 @@
 import axios from "axios";
 
-interface RequestBody {
+export interface RequestBody {
   id: string;
   title: string;
 }
 
-interface Response {
+export interface Response {
   id: string;
   title: string;
 }

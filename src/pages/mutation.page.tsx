@@ -1,9 +1,14 @@
 import { useMutation } from "@tanstack/react-query";
 import React from "react";
-import { createPost } from "../api/createPost";
+import { RequestBody, Response, createPost } from "../api/createPost";
+import { AxiosError } from "axios";
 
 export const MutationPage: React.FC = () => {
-  const { isLoading, error, isSuccess, data, mutate } = useMutation({
+  const { isLoading, error, isSuccess, data, mutate } = useMutation<
+    Response,
+    AxiosError,
+    RequestBody
+  >({
     mutationFn: createPost,
   });
 
@@ -13,9 +18,7 @@ export const MutationPage: React.FC = () => {
         "Adding todo..."
       ) : (
         <>
-          {error instanceof Error && (
-            <div>An error occurred: {error.message}</div>
-          )}
+          {error && <div>An error occurred: {error.message}</div>}
 
           <button
             onClick={() => {
